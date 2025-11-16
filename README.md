@@ -2,20 +2,35 @@
 Try all mechanisms of secrets provisioning
 
 Directory:
+
 ├─ app/
+
 │  ├─ app.py
+
 │  ├─ requirements.txt
+
 │  ├─ Dockerfile
+
 │  └─ secrets.yaml
+
 ├─ docker-compose.yml
+
 ├─ sops/
+
 │  ├─ README_SOPS.md
+
 │  └─ .sops/          (ignored in git)
+
 ├─ vault/
+
 │  ├─ vault-init.sh
+
 │  └─ policies/
+
 │     └─ app-policy.hcl
+
 ├─ .gitignore
+
 └─ README.md
 
 
