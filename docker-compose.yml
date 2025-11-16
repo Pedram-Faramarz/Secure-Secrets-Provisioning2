@@ -1,0 +1,24 @@
+version: "3.8"
+services:
+  vault:
+    image: vault:1.14.0
+    environment:
+      VAULT_DEV_ROOT_TOKEN_ID: "root-token"
+      VAULT_ADDR: "http://localhost:8200"
+    ports:
+      - "8200:8200"
+    command: "server -dev -dev-root-token-id=root-token -log-level=info"
+    volumes:
+      - ./vault:/vault
+  app:
+    build: ./app
+    ports:
+      - "5000:5000"
+    environment:
+      VAULT_ADDR: "http://vault:8200"
+      VAULT_TOKEN: "root-token"   # for local demo only (dev)
+      VAULT_SECRET_PATH: "secret/data/myapp"
+      ENV_USER: "env_user_example"
+      ENV_SECRET: "env_secret_value"
+    depends_on:
+      - vault
